@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
-import HomeMenu from "../components/HomeMenu";
+import TabNavigation from "./TabNavigation";
 
 const Stack = createNativeStackNavigator()
 
@@ -19,8 +19,8 @@ export default function StackNavigator() {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="HomeMenu"
-        component={HomeMenu}
+        name="TabNavigation"
+        component={TabNavigation}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
