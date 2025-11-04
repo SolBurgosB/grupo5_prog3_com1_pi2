@@ -11,19 +11,19 @@ export default class Login extends Component {
             password: "",
             erroremail: "",
             errorpass: "",
-            emailLoguin: "",
+            emailLogin: "",
             noexiste: ""
         }
     }
 
     componentDidMount() {
-        auth.onAuthStateChanged(user => this.setState({ emailLoguin: user.email }))
+        auth.onAuthStateChanged(user => this.setState({ emailLogin: user.email }))
     }
 
-    onSubmit(email, password, emailLoguin) {
+    onSubmit(email, password, emailLogin) {
         console.log("Ingresando usuario: ", { email, password });
         auth.signInWithEmailAndPassword(email, password)
-            .then((user) => { this.props.navigation.navigate("HomeMenu") })
+            .then((user) => { this.props.navigation.navigate("HomePage") })
             .catch((error) => console.log("Hubo un error"))
         if (!email.includes("@")) {
             this.setState({ erroremail: "Email mal formateado" })
@@ -31,7 +31,7 @@ export default class Login extends Component {
         if (password.length <= 5) {
             this.setState({ errorpass: "La password debe tener una longitud mínima de 6 caracteres" })
         }
-        if (emailLoguin !== email) {
+        if (emailLogin !== email) {
             const user = auth.currentUser;
             this.setState({ noexiste: "Credenciales incorrectas" })
         }
@@ -40,13 +40,9 @@ export default class Login extends Component {
     render() {
         return (
             <View>
-                <Text>Screen de Login</Text>
+                <Text>Login</Text>
                 <Pressable onPress={() => this.props.navigation.navigate("Register")}>
                     <Text>Ir a Register</Text>
-                </Pressable>
-
-                <Pressable onPress={() => this.props.navigation.navigate("HomeMenu")}>
-                    <Text>Ir a página principal</Text>
                 </Pressable>
 
                 <Pressable>

@@ -31,6 +31,7 @@ export default class Post extends Component {
   render() {
     return (
       <View>
+        <Text>{this.props.data.owner} {this.props.data.createdAt}</Text>
         <Text>{this.props.data.post}</Text> //Ver si va post o otra cosa DUDA
         {this.state.liked ? <Pressable onPress={() => this.likear(this.props.id)}><Text>Like</Text></Pressable> : <Pressable onPress={() => this.deslikear(this.props.id)}><Text>No Like</Text></Pressable>}
       </View> //cuando ejecuto el motodo le paso el parámetro que quiero que llegue por props de Home
