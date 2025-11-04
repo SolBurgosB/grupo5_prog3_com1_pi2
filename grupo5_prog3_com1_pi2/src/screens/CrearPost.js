@@ -1,40 +1,37 @@
+import { Text, View, TextInput, Pressable, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
-import {Text, View, Pressable} from "react-native"
-import { db, auth } from '../firebase/config'
-import firebase from 'firebase'
+import {db, auth} from "../firebase/config"
 
-export default class Tweet extends Component {
+export default class CrearPost extends Component {
   constructor(props){
-        super(props)
-        this.state={
-            following: false
-        }
+    super(props)
+    this.state={
+        post: ""
     }
-    agregarFollow(docId){
-        db
-        .collection("tweets") //me fijo en los archivos de firebase, tmb del snapSHot (esta en home)
-        .doc(docId) //lega por props de Home
-        .update({
-            followers: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
-        })
-        .then(()=>this.state({following:true}))
-    } //para sacar un follower hago el método contrario
-    sacarFollow(docId){
-        db
-        .collection("tweets") //me fijo en los archivos de firebase, tmb del snapSHot (esta en home)
-        .doc(docId) //lega por props de Home
-        .update({
-            followers: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
-        })
-        .then(()=>this.state({following:false}))
+  }
+  crear(parampost){
+    if(parampost !== ""){
+        db.collection("posts").add({
+        owner: auth.currentUser.email,
+        createdAt: Date.now(),
+        post: parampost
+    })
+    .then((res)=>this.props.navigation.navigate("HomePage"))
+    .catch((error)=> console.log(error))
     }
+    
+  }
     render() {
     return (
       <View>
-        <Text>{this.props.data.tweet}</Text>
-        {this.state.following? <Pressable onPress={()=>this.agregarFollow(this.props.id)}><Text>Agregar a favoritos</Text></Pressable> :  <Pressable onPress={()=>this.sacarFollow(this.props.id)}><Text>Sacar de favoritos</Text></Pressable>}
-        
-      </View> //cuando ejecuto el motodo le paso el parámetro que quiero que llegue por props de Home
+        <Text>Crea tu post</Text>
+        <View>
+            <TextInput keyboardType='default' placeholder='Post' onChangeText={(text)=>this.setState({post: text})} value={this.state.post}/> 
+            <Pressable onPress={()=>this.crear(this.state.post)}>
+                <Text>Crear post</Text>
+            </Pressable>        
+        </View>
+      </View>
     )
   }
 }
