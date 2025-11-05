@@ -16,7 +16,7 @@ export default class CrearPost extends Component {
         createdAt: Date.now(),
         post: parampost
     })
-    .then((res)=>this.props.navigation.navigate("HomePage"))
+    .then((res)=>this.props.navigation.navigate("TabNavigation", { screen: "HomePage"}))
     .catch((error)=> console.log(error))
     }
     

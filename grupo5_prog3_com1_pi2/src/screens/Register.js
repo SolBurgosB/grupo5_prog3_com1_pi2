@@ -25,7 +25,7 @@ export default class Register extends Component {
                         username: username,
                         createdAt: Date.now()
                     })
-                        .then(() => this.props.navigation.navigate("HomeMenu"))
+                        .then(() => this.props.navigation.navigate("Login"))
                         .catch((error) => console.log("Error guardando en Firestore:", error.message))
                 })
                 .catch((error) => console.log("Error creando usuario:", error.message))

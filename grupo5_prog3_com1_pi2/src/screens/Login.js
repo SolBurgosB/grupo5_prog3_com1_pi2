@@ -23,7 +23,7 @@ export default class Login extends Component {
     onSubmit(email, password, emailLogin) {
         console.log("Ingresando usuario: ", { email, password });
         auth.signInWithEmailAndPassword(email, password)
-            .then((user) => { this.props.navigation.navigate("HomePage") })
+            .then((user) => { this.props.navigation.navigate("TabNavigation", { screen: "HomePage"})})
             .catch((error) => console.log("Hubo un error"))
         if (!email.includes("@")) {
             this.setState({ erroremail: "Email mal formateado" })
