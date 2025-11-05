@@ -12,7 +12,7 @@ export default class HomePage extends Component {
   }
   componentDidMount() {
     db.collection("posts")
-    .orderBy("owner", "des") //en vez de owner va la fecha de creación como figure en firebase
+    .orderBy("owner", "desc") //en vez de owner va la fecha de creación como figure en firebase
     .onSnapshot((docs) => {
       let posts = []
       docs.forEach((doc) => { posts.push({ id: doc.id, data: doc.data() }) })
@@ -27,7 +27,7 @@ export default class HomePage extends Component {
     return (
       <View>
         <Text>Home Page</Text>
-        <FlatList data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post data={item.data} id={item.id}/>} /> /*pongo como recuperé los datos en onSnapshot*/
+        <FlatList data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post data={item.data} id={item.id}/>} /> 
       </View>
     )
   }

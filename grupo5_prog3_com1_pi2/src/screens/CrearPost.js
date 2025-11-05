@@ -1,6 +1,7 @@
 import { Text, View, TextInput, Pressable, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
-import {db, auth} from "../firebase/config"
+import {db, auth } from "../firebase/config"
+import firebase from 'firebase'
 
 export default class CrearPost extends Component {
   constructor(props){
@@ -11,12 +12,13 @@ export default class CrearPost extends Component {
   }
   crear(parampost){
     if(parampost !== ""){
-        db.collection("posts").add({
+        db
+        .collection("posts").add({
         owner: auth.currentUser.email,
         createdAt: Date.now(),
         post: parampost
     })
-    .then((res)=>this.props.navigation.navigate("TabNavigation", { screen: "HomePage"}))
+    .then((res)=>this.props.navigation.navigate("CommentsNavigation", { screen: "HomePage"}))
     .catch((error)=> console.log(error))
     }
     
