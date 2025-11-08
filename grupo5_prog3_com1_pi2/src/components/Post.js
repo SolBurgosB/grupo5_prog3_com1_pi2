@@ -43,7 +43,7 @@ export default class Post extends Component {
         <Text>{this.props.data.post}</Text>
         <Text>Cantidad de likes: {this.state.cantidadLikes}</Text>
         {this.state.liked ? <Pressable onPress={() => this.deslikear(this.props.id)}><Text>No Like</Text></Pressable> : <Pressable onPress={() => this.likear(this.props.id)} ><Text>Like</Text></Pressable>}
-        <Pressable onPress={() => this.props.navigation.navigate("CommentsNavigation", {screen: "Comments"})}>
+        <Pressable onPress={() => this.props.navigation.navigate("CommentsNavigation", {screen: "Comments", params: {id: this.props.id, post: this.props.data.post, owner: this.props.data.owner, cantidadLikes: this.state.cantidadLikes}})}>
           <Text>Comentar</Text>
         </Pressable>
       </View> //cuando ejecuto el motodo le paso el parámetro que quiero que llegue por props de Home
