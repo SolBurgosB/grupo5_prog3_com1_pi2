@@ -8,13 +8,14 @@ export default class Profile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      postsrecuperados: []
+      postsrecuperados: [],
+      users: []
     }
   }
   componentDidMount() {
     db.collection("posts")
       .where("owner", "==", auth.currentUser.email)
-      .orderBy("owner", "desc")
+      .orderBy("createdAt", "desc")
       .onSnapshot((docs) => {
         let posts = []
         docs.forEach((doc) => { posts.push({ id: doc.id, data: doc.data() }) })
@@ -23,6 +24,17 @@ export default class Profile extends Component {
         })
       }
       )
+       db.collection("users")
+      .where("email", "==", auth.currentUser.email)
+      .onSnapshot((docs) => {
+        let usuarios = []
+        docs.forEach((doc) => { usuarios.push({ id: doc.id, data: doc.data() }) })
+        this.setState({
+          users: usuarios
+        })
+      }
+      )
+
       console.log(auth.currentUser.email);
       
   }
@@ -41,7 +53,7 @@ export default class Profile extends Component {
   render() {
     return (
       <View>
-        <Text>{auth.currentUser.username}</Text>
+        <Text>{this.state.users[0].username}</Text>
         <Text>{auth.currentUser.email}</Text>
         <FlatList data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post data={item.data} id={item.id} />} />
         <Pressable onPress={() => this.logout()}>
