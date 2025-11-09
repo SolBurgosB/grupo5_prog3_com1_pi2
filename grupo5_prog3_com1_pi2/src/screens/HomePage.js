@@ -25,10 +25,20 @@ export default class HomePage extends Component {
   }
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Home Page</Text>
         <FlatList data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post data={item.data} id={item.id} navigation={this.props.navigation} />} /> 
       </View>
     )
   }
 }
+
+const styles= StyleSheet({
+  container: {
+    flex: 1,
+    width: "100%",
+    
+  }
+})
+
+

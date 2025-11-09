@@ -52,7 +52,7 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>{this.state.users[0].username}</Text>
         <Text>{auth.currentUser.email}</Text>
         <FlatList data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post data={item.data} id={item.id} />} />
@@ -63,3 +63,11 @@ export default class Profile extends Component {
     )
   }
 }
+
+const styles= StyleSheet({
+  container: {
+    flex: 1,
+    width: "100%",
+    
+  }
+})

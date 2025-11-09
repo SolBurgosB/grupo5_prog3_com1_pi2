@@ -38,7 +38,7 @@ export default class Login extends Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <Text>Login</Text>
                 <Pressable onPress={() => this.props.navigation.navigate("Register")}>
                     <Text>Ir a Register</Text>
@@ -58,3 +58,11 @@ export default class Login extends Component {
         )
     }
 }
+
+const styles= StyleSheet({
+  container: {
+    flex: 1,
+    width: "100%",
+    
+  }
+})

@@ -25,7 +25,7 @@ export default class CrearPost extends Component {
   }
     render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Crea tu post</Text>
         <View>
             <TextInput keyboardType='default' placeholder='Post' onChangeText={(text)=>this.setState({post: text})} value={this.state.post}/> 
@@ -37,3 +37,11 @@ export default class CrearPost extends Component {
     )
   }
 }
+
+const styles= StyleSheet({
+  container: {
+    flex: 1,
+    width: "100%",
+    
+  }
+})

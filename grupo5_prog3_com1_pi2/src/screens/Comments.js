@@ -41,7 +41,7 @@ export default class Comments extends Component {
   }
     render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Crea tu comentario</Text>
         <Text>{this.props.route.params.owner}</Text>
         <Text>{this.props.route.params.post}</Text>
@@ -57,3 +57,11 @@ export default class Comments extends Component {
     )
   }
 }
+
+const styles= StyleSheet({
+  container: {
+    flex: 1,
+    width: "100%",
+    
+  }
+})
