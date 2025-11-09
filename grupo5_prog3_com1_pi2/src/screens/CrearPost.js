@@ -16,7 +16,8 @@ export default class CrearPost extends Component {
         .collection("posts").add({
         owner: auth.currentUser.email,
         createdAt: Date.now(),
-        post: parampost
+        post: parampost,
+        likes:[]
     })
     .then((res)=>this.props.navigation.navigate("CommentsNavigation", { screen: "HomePage"}))
     .catch((error)=> console.log(error))
