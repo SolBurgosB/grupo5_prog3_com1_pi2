@@ -63,9 +63,9 @@ export default class Profile extends Component {
           (<ActivityIndicator size="large" color="pink" />)
           :
           (this.state.postsrecuperados.length > 0 ?
-            (<FlatList style={styles.posts} data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => (<Post style={styles.post} data={item.data} id={item.id} navigation={this.props.navigation} />)} />)
+            (<FlatList style={styles.lista} data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => (<Post style={styles.post} data={item.data} id={item.id} navigation={this.props.navigation} />)} />)
             :
-            (<Text>No hay ningún post</Text>)
+            (<Text style={styles.mail}>No hay ningún post</Text>)
           )
         }
         <Pressable style={styles.boton} onPress={() => this.logout()}>
@@ -81,6 +81,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFF0F6",
     padding: 16,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 20,
   },
 
   titulo: {
@@ -111,7 +114,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: "flex-start",
     marginLeft: 8,
-    marginTop: 10
+    marginTop: 20,
+    alignSelf: "center"
   },
   textoboton: {
     color: "white",
@@ -119,11 +123,16 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
 
-  posts: {
-    backgroundColor: "#FFF7FA",
-    borderColor: "#FFB3D2",
+  post: {
+    backgroundColor: "#FFE6F2",
+    borderColor: "#FF8AC2",
     borderWidth: 1,
     borderRadius: 12,
-    padding: 8,
+    padding: 12,
+    margin: 12,
+    width: "45%",
+  },
+  lista:{
+    width: "100%",
   }
 })

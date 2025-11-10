@@ -43,22 +43,16 @@ export default class Post extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: "100%",
+        width: "40%",
         borderRadius: 12,
         borderWidth: 1,
         borderColor: "#fa82b2ff",
         padding: 16,
         margin: 4,
+        alignItems:"center",
+        alignSelf: "center"
         
     },
-    post: {
-    backgroundColor: "#FFF7FA",
-    borderColor: "#FFB3D2",
-    borderRadius: 12,
-    padding: 16,
-    alignItems: "center",
-    marginTop: 8,
-  },
   titulo: {
     color: "#C2185B",
     fontWeight: "bold",
@@ -93,7 +87,6 @@ const styles = StyleSheet.create({
         margin: 4,
     paddingHorizontal: 12,
     borderRadius: 10,
-    alignSelf: "flex-start",
     },
     textoBoton: {
         color: "#C2185B",
