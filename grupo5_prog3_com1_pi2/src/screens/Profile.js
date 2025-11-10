@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FlatList, View, Text, StyleSheet, Pressable, ActivityIndicator } from 'react-native'
+import { FlatList, View, Text, StyleSheet, Pressable, ActivityIndicator, Image } from 'react-native'
 import { db, auth } from "../firebase/config"
 import Post from '../components/Post'
 import firebase from 'firebase'
@@ -65,7 +65,9 @@ export default class Profile extends Component {
           (this.state.postsrecuperados.length > 0 ?
             (<FlatList style={styles.lista} data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => (<Post style={styles.post} data={item.data} id={item.id} navigation={this.props.navigation} />)} />)
             :
-            (<Text style={styles.mail}>No hay ningún post</Text>)
+            (<Text style={styles.mail}>No hay ningún post</Text>,
+            <Image source={require("../../assets/caratristee.jpg")} resizeMode="center" style={styles.imagen} />
+            )
           )
         }
         <Pressable style={styles.boton} onPress={() => this.logout()}>
@@ -105,6 +107,14 @@ const styles = StyleSheet.create({
     color: "#7A1B47",
     fontSize: 14,
     marginBottom: 4,
+  },
+
+  imagen: {
+    width: 150,      
+  height: 150,   
+  marginTop: 20,
+  marginBottom: 10,
+  alignSelf: "center",
   },
 
   boton: {
