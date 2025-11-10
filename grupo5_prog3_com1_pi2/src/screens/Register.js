@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
     login: {
       color: "#C2185B",
       fontSize: 14,
+      textDecorationLine: "underline",
     },
     error: {
       color: "#D32F2F",

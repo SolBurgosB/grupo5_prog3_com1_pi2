@@ -49,14 +49,14 @@ export default class Login extends Component {
                     <TextInput style={styles.campo} placeholder='Email' onChangeText={text => this.setState({ email: text })} value={this.state.email} />
                     <Text>{this.state.erroremail}</Text>
                     <TextInput style={styles.campo} placeholder='Password' onChangeText={text => this.setState({ password: text })} value={this.state.password} secureTextEntry={true} />
-                    <Text>{this.state.errorpass}</Text>
-                    <Text>{this.state.errorfirebase}</Text>
+                    <Text style={styles.error}>{this.state.errorpass}</Text>
+                    <Text style={styles.error}>{this.state.errorfirebase}</Text>
                     <Pressable style={styles.boton} onPress={() => this.onSubmit(this.state.email, this.state.password)}>
                         <Text style={styles.textoBoton}>Ingresar</Text>
                     </Pressable>
                 </Pressable>
-                <Pressable style={styles.register} onPress={() => this.props.navigation.navigate("Register")}>
-                    <Text>No tengo cuenta</Text>
+                <Pressable style={styles.registerBoton} onPress={() => this.props.navigation.navigate("Register")}>
+                    <Text style={styles.register}>No tengo cuenta</Text>
                 </Pressable>
             </View>
         )
@@ -100,12 +100,19 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 16,
     },
+    registerBoton: {
+        alignItems: "center",
+        width: "100%",
+        marginTop: 10,
+    },
     register: {
         color: "#C2185B",
         fontSize: 14,
-        alignItems: "center",
-        width: "100%",
-        marginTop: 8,
         textDecorationLine: "underline",
+    },
+    error: {
+      color: "#D32F2F",
+      fontSize: 12,
+      marginBottom: 6,
     },
 });
