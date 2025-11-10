@@ -7,11 +7,15 @@ export default class CrearPost extends Component {
   constructor(props){
     super(props)
     this.state={
-        post: ""
+        post: "",
+        error:"",
     }
   }
   crear(parampost){
-    if(parampost !== ""){
+    if(parampost == ""){
+      this.setState({error: "Escribí un comentario"})
+    }
+    else{
         db
         .collection("posts").add({
         owner: auth.currentUser.email,
@@ -30,6 +34,7 @@ export default class CrearPost extends Component {
         <Text style={styles.titulo}>Creá tu post</Text>
         <View>
             <TextInput style={styles.campo} keyboardType='default' placeholder='Escribí tu Post' onChangeText={(text)=>this.setState({post: text})} value={this.state.post}/> 
+            <Text style={styles.error}>{this.state.error}</Text>
             <Pressable style={styles.boton} onPress={()=>this.crear(this.state.post)}>
                 <Text style={styles.textoboton}>Crear post</Text>
             </Pressable>        
@@ -74,5 +79,10 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     fontSize: 16,
+  },
+  error: {
+    color: "#D32F2F",
+    fontSize: 12,
+    marginBottom: 6,
   },
 })
