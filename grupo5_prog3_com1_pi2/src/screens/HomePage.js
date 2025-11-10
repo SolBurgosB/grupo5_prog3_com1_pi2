@@ -26,19 +26,42 @@ export default class HomePage extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Home Page</Text>
-        <FlatList data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post data={item.data} id={item.id} navigation={this.props.navigation} />} /> 
+        <Text style={styles.titulo}>Home Page</Text>
+        <FlatList data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post style={styles.post} data={item.data} id={item.id} navigation={this.props.navigation} />} /> 
       </View>
     )
   }
 }
 
-const styles= StyleSheet({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%",
-    
-  }
-})
+    backgroundColor: "#FFF0F6",  
+    paddingTop: 12,
+    paddingHorizontal: 10,
+    paddingBottom: 70,           
+  },
+  titulo: {
+    color: "#C2185B",
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 12,
+  },
+  lista: {
+    flex: 1,
+    alignItems: "center",
+    paddingBottom: 20,
+  },
+  post: {
+    backgroundColor: "#FFE6F2",
+        borderColor: "#FF8AC2",       
+        borderWidth: 1,
+        borderRadius: 12,
+        padding: 12,
+        margin: 12
+  },
+});
+
 
 

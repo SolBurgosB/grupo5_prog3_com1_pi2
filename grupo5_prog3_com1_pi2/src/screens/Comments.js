@@ -48,7 +48,7 @@ export default class Comments extends Component {
         <Text>{this.props.route.params.cantidadLikes}</Text>
         <FlatList data={this.state.comments} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => (<Text> {item.data.owner}: {item.data.comment}</Text>)} />
         <View>
-            <TextInput keyboardType='default' placeholder='Comment' onChangeText={(text)=>this.setState({comment: text})} value={this.state.comment}/> 
+            <TextInput keyboardType='default' placeholder='Escribí tu comentario' onChangeText={(text)=>this.setState({comment: text})} value={this.state.comment}/> 
             <Pressable onPress={()=>this.crear(this.state.comment)}>
                 <Text>Crear comentario</Text>
             </Pressable>        
