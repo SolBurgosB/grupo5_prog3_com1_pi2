@@ -88,13 +88,7 @@ const styles = StyleSheet.create({
       color: "#C2185B",
       fontSize: 22,
       fontWeight: "bold",
-    },
-    card: {
-      backgroundColor: "#FFE6F2",
-      borderColor: "#FF8AC2",
-      borderWidth: 1,
-      borderRadius: 16,
-      padding: 16,
+      marginBottom: 4,
     },
     campo: {
       backgroundColor: "white",
@@ -110,16 +104,18 @@ const styles = StyleSheet.create({
       paddingVertical: 12,
       alignItems: "center",
       marginTop: 6,
+      width: "100%"
     },
     registrarsetexto: {
       color: "white",
       fontWeight: "bold",
       fontSize: 16,
     },
-    loginboton: { alignItems: "center", marginTop: 10 },
+    loginboton: { alignItems: "center", marginTop: 10, width: "100%" },
     login: {
       color: "#C2185B",
       fontSize: 14,
+      textDecorationLine: "underline",
     },
     error: {
       color: "#D32F2F",
