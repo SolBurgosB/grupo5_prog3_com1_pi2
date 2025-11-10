@@ -13,7 +13,7 @@ export default class CrearPost extends Component {
   }
   crear(parampost){
     if(parampost == ""){
-      this.setState({error: "Escribí un comentario"})
+      this.setState({error: "Escribí tu post"})
     }
     else{
         db

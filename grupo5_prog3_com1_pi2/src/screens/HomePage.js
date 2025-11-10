@@ -28,7 +28,7 @@ export default class HomePage extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.titulo}>Home Page</Text>
+        <Text style={styles.titulo}>Página principal</Text>
         {this.state.loading ? <ActivityIndicator size="large" color="pink"/> : <FlatList data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post style={styles.post} data={item.data} id={item.id} navigation={this.props.navigation} />} /> }
       </View>
     )

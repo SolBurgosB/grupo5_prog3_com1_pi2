@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: "flex-start",
     marginLeft: 8,
+    marginTop: 10
   },
   textoboton: {
     color: "white",
