@@ -27,11 +27,11 @@ export default class CrearPost extends Component {
     render() {
     return (
       <View style={styles.container}>
-        <Text>Crea tu post</Text>
+        <Text style={styles.titulo}>Creá tu post</Text>
         <View>
-            <TextInput keyboardType='default' placeholder='Escribí tu Post' onChangeText={(text)=>this.setState({post: text})} value={this.state.post}/> 
-            <Pressable onPress={()=>this.crear(this.state.post)}>
-                <Text>Crear post</Text>
+            <TextInput style={styles.campo} keyboardType='default' placeholder='Escribí tu Post' onChangeText={(text)=>this.setState({post: text})} value={this.state.post}/> 
+            <Pressable style={styles.boton} onPress={()=>this.crear(this.state.post)}>
+                <Text style={styles.textoboton}>Crear post</Text>
             </Pressable>        
         </View>
       </View>
@@ -39,10 +39,40 @@ export default class CrearPost extends Component {
   }
 }
 
-const styles= StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%",
-    
-  }
+    backgroundColor: "#FFF0F6",   
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 20,
+  },
+  titulo: {
+    color: "#C2185B",
+    fontSize: 22,
+    fontWeight: "bold",
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  campo: {
+    backgroundColor: "white",
+    borderColor: "#FF8AC2",
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 10,
+    minHeight: 100,
+    textAlignVertical: "top",
+    marginBottom: 15,
+  },
+  boton: {
+    backgroundColor: "#FF8AC2",
+    borderRadius: 10,
+    paddingVertical: 10,
+    alignItems: "center",
+  },
+  textoboton: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
 })
