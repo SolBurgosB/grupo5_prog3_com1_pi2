@@ -58,7 +58,7 @@ export default class Profile extends Component {
         <Text style={styles.titulo}>Mi perfil</Text>
         {this.state.users.length > 0 ? <Text style={styles.usuario}>{this.state.users[0].data.username}</Text> : <Text> </Text> }
         <Text style={styles.mail}>{auth.currentUser.email}</Text>
-        {this.state.loading ? <ActivityIndicator size="large" color="pink"/> :<FlatList data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post data={item.data} id={item.id} navigation={this.props.navigation}/>} />}
+        {this.state.loading ? <ActivityIndicator size="large" color="pink"/> :<FlatList style={styles.posts} data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post style={styles.post} data={item.data} id={item.id} navigation={this.props.navigation}/>} />}
         <Pressable style={styles.boton} onPress={() => this.logout()}>
           <Text style={styles.textoboton}>Cerrar Sesión</Text>
         </Pressable>
@@ -107,5 +107,13 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     fontSize: 13,
+  },
+
+  posts: {
+    backgroundColor: "#FFF7FA",
+    borderColor: "#FFB3D2",
+    borderWidth: 1,
+    borderRadius: 12,
+    padding: 8,
   }
 })
