@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         paddingVertical: 6,
-        paddingHorizontal: 12
+        paddingHorizontal: 12,
+        margin: 4
     },
     textoBoton: {
         color: "#C2185B",

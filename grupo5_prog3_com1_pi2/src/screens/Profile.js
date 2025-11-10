@@ -57,7 +57,7 @@ export default class Profile extends Component {
       <View style={styles.container}>
         {this.state.users.length > 0 ? <Text>{this.state.users[0].data.username}</Text> : <Text> </Text> }
         <Text>{auth.currentUser.email}</Text>
-        {this.state.loading ? <ActivityIndicator size="large" color="pink"/> :<FlatList data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post data={item.data} id={item.id} />} />}
+        {this.state.loading ? <ActivityIndicator size="large" color="pink"/> :<FlatList data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post data={item.data} id={item.id} navigation={this.props.navigation}/>} />}
         <Pressable onPress={() => this.logout()}>
           <Text>Cerrar Sesión</Text>
         </Pressable>
