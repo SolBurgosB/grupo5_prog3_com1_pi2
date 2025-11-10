@@ -57,7 +57,7 @@ export default class Register extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.bienvenidos}>¡Bienvenidos!</Text>
+                <Text style={styles.bienvenidos}>¡Bienvenido!</Text>
                 <Text style={styles.titulo}>Creá tu cuenta</Text>
 
                 <View>
