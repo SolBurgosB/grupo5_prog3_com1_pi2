@@ -44,20 +44,19 @@ export default class Login extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Login</Text>
-                <Pressable onPress={() => this.props.navigation.navigate("Register")}>
-                    <Text>Ir a Register</Text>
-                </Pressable>
-
+                <Text style={styles.titulo}>Ingresá a tu cuenta</Text>
                 <Pressable>
-                    <TextInput placeholder='Email' onChangeText={text => this.setState({ email: text })} value={this.state.email} />
+                    <TextInput style={styles.campo} placeholder='Email' onChangeText={text => this.setState({ email: text })} value={this.state.email} />
                     <Text>{this.state.erroremail}</Text>
-                    <TextInput placeholder='Password' onChangeText={text => this.setState({ password: text })} value={this.state.password} secureTextEntry={true} />
+                    <TextInput style={styles.campo} placeholder='Password' onChangeText={text => this.setState({ password: text })} value={this.state.password} secureTextEntry={true} />
                     <Text>{this.state.errorpass}</Text>
                     <Text>{this.state.errorfirebase}</Text>
-                    <Pressable onPress={() => this.onSubmit(this.state.email, this.state.password)}>
-                        <Text>Ingresar</Text>
+                    <Pressable style={styles.boton} onPress={() => this.onSubmit(this.state.email, this.state.password)}>
+                        <Text style={styles.textoBoton}>Ingresar</Text>
                     </Pressable>
+                </Pressable>
+                <Pressable style={styles.register} onPress={() => this.props.navigation.navigate("Register")}>
+                    <Text>No tengo cuenta</Text>
                 </Pressable>
             </View>
         )
@@ -67,7 +66,46 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#FFF0F6",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingHorizontal: 20,
+    },
+    titulo: {
+        fontSize: 22,
+        fontWeight: "bold",
+        color: "#C2185B",
+        marginBottom: 25,
+    },
+    campo: {
         width: "100%",
-
-    }
-})
+        backgroundColor: "white",
+        borderColor: "#FF8AC2",
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 10,
+        marginBottom: 10,
+    },
+    boton: {
+        backgroundColor: "#FF8AC2",
+        borderRadius: 10,
+        paddingVertical: 10,
+        width: "100%",
+        alignItems: "center",
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    textoBoton: {
+        color: "white",
+        fontWeight: "bold",
+        fontSize: 16,
+    },
+    register: {
+        color: "#C2185B",
+        fontSize: 14,
+        alignItems: "center",
+        width: "100%",
+        marginTop: 8,
+        textDecorationLine: "underline",
+    },
+});
