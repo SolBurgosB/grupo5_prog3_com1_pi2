@@ -113,7 +113,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderRadius: 10,
     alignSelf: "flex-start",
-    marginLeft: 8,
     marginTop: 20,
     alignSelf: "center"
   },

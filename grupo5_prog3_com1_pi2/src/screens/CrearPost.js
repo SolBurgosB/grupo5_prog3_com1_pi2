@@ -13,7 +13,7 @@ export default class CrearPost extends Component {
   }
   crear(parampost){
     if(parampost == ""){
-      this.setState({error: "Escribí tu post"})
+      this.setState({error: "Campo incompleto"})
     }
     else{
         db
@@ -24,7 +24,7 @@ export default class CrearPost extends Component {
         likes:[]
     })
     .then((res)=>{
-      this.setState({post: ""})
+      this.setState({post: "", error: ""})
       this.props.navigation.navigate("CommentsNavigation", { screen: "HomePage"})})
     .catch((error)=> console.log(error))
     }
@@ -35,7 +35,7 @@ export default class CrearPost extends Component {
       <View style={styles.container}>
         <Text style={styles.titulo}>Creá tu post</Text>
         <View>
-            <TextInput style={styles.campo} keyboardType='default' placeholder='Escribí tu Post' onChangeText={(text)=>this.setState({post: text})} value={this.state.post}/> 
+            <TextInput style={styles.campo} keyboardType='default' placeholder='Escribí tu post' onChangeText={(text)=>this.setState({post: text})} value={this.state.post}/> 
             <Text style={styles.error}>{this.state.error}</Text>
             <Pressable style={styles.boton} onPress={()=>this.crear(this.state.post)}>
                 <Text style={styles.textoboton}>Crear post</Text>

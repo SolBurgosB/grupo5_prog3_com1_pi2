@@ -30,8 +30,8 @@ export default class Post extends Component {
         <Text style={styles.owner}>{this.props.data.owner}</Text>
         <Text style={styles.texto}>Creado en la fecha: {new Date(this.props.data.createdAt).toLocaleDateString()}</Text>
         <Text style={styles.textopost}>{this.props.data.post}</Text>
-        <Text style={styles.likes}>Cantidad de likes: {(this.props.data.likes|| [] ).length  }</Text>
-        { (this.props.data.likes|| [] ).includes(auth.currentUser.email) ? <Pressable style={styles.boton} onPress={() => this.deslikear(this.props.id)}><Text style={styles.textoBoton}>No Like</Text></Pressable> : <Pressable style={styles.boton} onPress={() => this.likear(this.props.id)} ><Text style={styles.textoBoton}>Like</Text></Pressable>}
+        <Text style={styles.likes}>Cantidad de me gusta: {(this.props.data.likes|| [] ).length  }</Text>
+        { (this.props.data.likes|| [] ).includes(auth.currentUser.email) ? <Pressable style={styles.boton} onPress={() => this.deslikear(this.props.id)}><Text style={styles.textoBoton}>No me gusta</Text></Pressable> : <Pressable style={styles.boton} onPress={() => this.likear(this.props.id)} ><Text style={styles.textoBoton}>Me gusta</Text></Pressable>}
         <Pressable style={styles.boton} onPress={() => this.props.navigation.navigate("CommentsNavigation", {screen: "Comments", params: {id: this.props.id, post: this.props.data.post, owner: this.props.data.owner, cantidadLikes: (this.props.data.likes|| [] ).length }})}>
           <Text style={styles.textoBoton}>Comentar</Text>
         </Pressable>

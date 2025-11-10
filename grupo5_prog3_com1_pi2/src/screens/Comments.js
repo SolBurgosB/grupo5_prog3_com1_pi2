@@ -9,6 +9,7 @@ export default class Comments extends Component {
     this.state={
         comment: "",
         post: "",
+        error:"",
         comments:[], 
         loading: true
     }
@@ -28,7 +29,10 @@ export default class Comments extends Component {
        )
   }
   crear(paramcom){
-    if(paramcom !== ""){
+    if(paramcom == ""){
+      this.setState({error: "Campo incompleto"})
+    }
+    else{
         db.collection("comments").add({
         owner: auth.currentUser.email,
         createdAt: Date.now(),
@@ -36,7 +40,7 @@ export default class Comments extends Component {
         post: this.props.route.params.id
         
     })
-    .then(this.setState({comment: ""}))
+    .then(this.setState({comment: "", error:""}))
     .catch((error)=> console.log(error))
     }
     
@@ -51,6 +55,7 @@ export default class Comments extends Component {
         {this.state.loading ? <ActivityIndicator size="large" color="pink"/> : <FlatList style={styles.comentarios} data={this.state.comments} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => (<Text style={styles.comentario}> {item.data.owner}: {item.data.comment}</Text>)} />}
         <View>
             <TextInput style={styles.campo} keyboardType='default' placeholder='Escribí tu comentario' onChangeText={(text)=>this.setState({comment: text})} value={this.state.comment}/> 
+            <Text style={styles.error}>{this.state.error}</Text>
             <Pressable style={styles.boton} onPress={()=>this.crear(this.state.comment)}>
                 <Text style={styles.textoboton}>Crear comentario</Text>
             </Pressable>        
@@ -109,21 +114,6 @@ const styles = StyleSheet.create({
     padding: 8,
     marginBottom: 10,
   },
-  comwner: {
-    color: "#C2185B",
-    fontWeight: "bold",
-    marginBottom: 4,
-  },
-  commentText: {
-    color: "#7A1B47",
-    fontSize: 14,
-  },
-  inputSection: {
-    marginTop: 10,
-    backgroundColor: "#FFE6F2",
-    borderRadius: 12,
-    padding: 12,
-  },
   campo: {
     borderColor: "#FF8AC2",
     borderWidth: 1,
@@ -142,4 +132,9 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
+  error: {
+    color: "#D32F2F",
+    fontSize: 12,
+    marginBottom: 6,
+},
 })
