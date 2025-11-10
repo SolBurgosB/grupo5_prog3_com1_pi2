@@ -32,9 +32,9 @@ export default class Profile extends Component {
         this.setState({
           users: usuarios
         })
+        console.log(usuarios)
       }
       )
-
       console.log(auth.currentUser.email);
       
   }
@@ -53,7 +53,7 @@ export default class Profile extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{this.state.users[0].username}</Text>
+        {this.state.users.length > 0 ? <Text>{this.state.users[0].data.username}</Text> : <Text> </Text> }
         <Text>{auth.currentUser.email}</Text>
         <FlatList data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post data={item.data} id={item.id} />} />
         <Pressable onPress={() => this.logout()}>
@@ -64,10 +64,12 @@ export default class Profile extends Component {
   }
 }
 
-const styles= StyleSheet({
+const styles= StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%",
-    
-  }
+    backgroundColor: "#FFF0F6",  
+    paddingTop: 12,
+    paddingHorizontal: 10,
+    paddingBottom: 70,           
+  },
 })

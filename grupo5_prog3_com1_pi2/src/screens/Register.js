@@ -10,9 +10,9 @@ export default class Register extends Component {
             username: "",
             password: "",
             email: "",
-            errorname: "",
             errormail: "",
-            errorpass: ""
+            errorpass: "",
+            errorfirebase: ""
         }
     }
     submit(username, email, password) {
@@ -26,21 +26,23 @@ export default class Register extends Component {
                         createdAt: Date.now()
                     })
                         .then(() => this.props.navigation.navigate("Login"))
-                        .catch((error) => console.log("Error guardando en Firestore:", error.message))
+                        .catch((error) => console.log("Error guardando en Firestore:"))
                 })
-                .catch((error) => console.log("Error creando usuario:", error.message))
+                .catch((error) => {
+                    console.log(error)
+
+                    if (error.code == "auth/email-already-in-use") {
+                      
+                    }
+                })
         }
         else {
-            if (username.length <= 3) {
-                this.setState({ errorname: "El nombre es corto" })
-            }
             if (!email.includes("@")) {
                 this.setState({ errormail: "El mail está mal" })
             }
             if (password.length <= 5) {
                 this.setState({ errorpass: "La constraseña es corta" })
             }
-
         }
     }
     render() {
@@ -52,11 +54,11 @@ export default class Register extends Component {
                 </Pressable>
                 <View>
                     <TextInput keyboardType='default' placeholder='Username' onChangeText={(text) => this.setState({ username: text })} value={this.state.username} />
-                    <Text>{this.state.errorname}</Text>
                     <TextInput keyboardType='email-address' placeholder='Email' onChangeText={(text) => this.setState({ email: text })} value={this.state.email} />
                     <Text>{this.state.errormail}</Text>
                     <TextInput keyboardType='default' placeholder='Password' secureTextEntry={true} onChangeText={(text) => this.setState({ password: text })} value={this.state.password} />
                     <Text>{this.state.errorpass}</Text>
+                    <Text>{this.state.errorfirebase}</Text>
                     <Pressable onPress={() => this.submit(this.state.username, this.state.email, this.state.password)}>
                         <Text>Registrarme</Text>
                     </Pressable>
@@ -66,7 +68,7 @@ export default class Register extends Component {
     }
 }
 
-const styles = StyleSheet({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: "100%",

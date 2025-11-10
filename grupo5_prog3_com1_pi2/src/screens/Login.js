@@ -10,20 +10,25 @@ export default class Login extends Component {
             password: "",
             erroremail: "",
             errorpass: "",
+            errorfirebase:"",
             emailLogin: "",
             noexiste: ""
         }
     }
 
     componentDidMount() {
-        auth.onAuthStateChanged(user => this.setState({ emailLogin: user.email }))
+        auth.onAuthStateChanged((user) => {
+            if (user !== null) {
+                this.props.navigation.navigate("TabNavigation")
+            }
+        })
     }
 
     onSubmit(email, password, emailLogin) {
         console.log("Ingresando usuario: ", { email, password });
         auth.signInWithEmailAndPassword(email, password)
-            .then((user) => { this.props.navigation.navigate("TabNavigation", { screen: "HomePage"})})
-            .catch((error) => console.log("Hubo un error"))
+            .then((user) => { this.props.navigation.navigate("TabNavigation", { screen: "HomePage" }) })
+            .catch((error) => console.log("Hubo un error", error))
         if (!email.includes("@")) {
             this.setState({ erroremail: "Email mal formateado" })
         }
@@ -50,6 +55,7 @@ export default class Login extends Component {
                     <TextInput placeholder='Password' onChangeText={text => this.setState({ password: text })} value={this.state.password} secureTextEntry={true} />
                     <Text>{this.state.errorpass}</Text>
                     <Text>{this.state.noexiste}</Text>
+                    <Text>{this.state.errorfirebase}</Text>
                     <Pressable onPress={() => this.onSubmit(this.state.email, this.state.password)}>
                         <Text>Ingresar</Text>
                     </Pressable>
@@ -59,10 +65,10 @@ export default class Login extends Component {
     }
 }
 
-const styles= StyleSheet({
-  container: {
-    flex: 1,
-    width: "100%",
-    
-  }
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        width: "100%",
+
+    }
 })

@@ -29,7 +29,7 @@ export default class CrearPost extends Component {
       <View style={styles.container}>
         <Text>Crea tu post</Text>
         <View>
-            <TextInput keyboardType='default' placeholder='Post' onChangeText={(text)=>this.setState({post: text})} value={this.state.post}/> 
+            <TextInput keyboardType='default' placeholder='Escribí tu Post' onChangeText={(text)=>this.setState({post: text})} value={this.state.post}/> 
             <Pressable onPress={()=>this.crear(this.state.post)}>
                 <Text>Crear post</Text>
             </Pressable>        
@@ -39,7 +39,7 @@ export default class CrearPost extends Component {
   }
 }
 
-const styles= StyleSheet({
+const styles= StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
