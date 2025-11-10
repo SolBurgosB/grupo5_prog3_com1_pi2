@@ -12,7 +12,6 @@ export default class Login extends Component {
             errorpass: "",
             errorfirebase:"",
             emailLogin: "",
-            noexiste: ""
         }
     }
 
@@ -28,16 +27,17 @@ export default class Login extends Component {
         console.log("Ingresando usuario: ", { email, password });
         auth.signInWithEmailAndPassword(email, password)
             .then((user) => { this.props.navigation.navigate("TabNavigation", { screen: "HomePage" }) })
-            .catch((error) => console.log("Hubo un error", error))
+            .catch((error) => {
+                    console.log(error)
+                    if (error.code == "auth/internal-error") {
+                        this.setState({errorfirebase: "No existe una cuenta con este mail o la contraseña es incorrecta"})
+                    }
+                })
         if (!email.includes("@")) {
             this.setState({ erroremail: "Email mal formateado" })
         }
         if (password.length <= 5) {
             this.setState({ errorpass: "La password debe tener una longitud mínima de 6 caracteres" })
-        }
-        if (emailLogin !== email) {
-            const user = auth.currentUser;
-            this.setState({ noexiste: "Credenciales incorrectas" })
         }
     }
 
@@ -54,7 +54,6 @@ export default class Login extends Component {
                     <Text>{this.state.erroremail}</Text>
                     <TextInput placeholder='Password' onChangeText={text => this.setState({ password: text })} value={this.state.password} secureTextEntry={true} />
                     <Text>{this.state.errorpass}</Text>
-                    <Text>{this.state.noexiste}</Text>
                     <Text>{this.state.errorfirebase}</Text>
                     <Pressable onPress={() => this.onSubmit(this.state.email, this.state.password)}>
                         <Text>Ingresar</Text>

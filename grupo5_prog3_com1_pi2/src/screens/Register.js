@@ -30,9 +30,8 @@ export default class Register extends Component {
                 })
                 .catch((error) => {
                     console.log(error)
-
                     if (error.code == "auth/email-already-in-use") {
-                      
+                        this.setState({errorfirebase: "El mail ya está en uso"})
                     }
                 })
         }
