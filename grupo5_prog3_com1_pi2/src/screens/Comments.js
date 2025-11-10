@@ -1,4 +1,4 @@
-import { Text, View, TextInput, Pressable, StyleSheet, FlatList } from 'react-native'
+import { Text, View, TextInput, Pressable, StyleSheet, FlatList, ActivityIndicator } from 'react-native'
 import React, { Component } from 'react'
 import {db, auth} from "../firebase/config"
 import Post from '../components/Post'
@@ -9,7 +9,8 @@ export default class Comments extends Component {
     this.state={
         comment: "",
         post: "",
-        comments:[]
+        comments:[], 
+        loading: true
     }
   }
   componentDidMount(){
@@ -20,7 +21,8 @@ export default class Comments extends Component {
          let comentarios = []
          docs.forEach((doc) => { comentarios.push({ id: doc.id, data: doc.data() }) })
          this.setState({
-           comments: comentarios
+           comments: comentarios,
+           loading: false
          })
        }
        )
@@ -46,7 +48,7 @@ export default class Comments extends Component {
         <Text>{this.props.route.params.owner}</Text>
         <Text>{this.props.route.params.post}</Text>
         <Text>{this.props.route.params.cantidadLikes}</Text>
-        <FlatList data={this.state.comments} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => (<Text> {item.data.owner}: {item.data.comment}</Text>)} />
+        {this.state.loading ? <ActivityIndicator size="large" color="pink"/> : <FlatList data={this.state.comments} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => (<Text> {item.data.owner}: {item.data.comment}</Text>)} />}
         <View>
             <TextInput keyboardType='default' placeholder='Escribí tu comentario' onChangeText={(text)=>this.setState({comment: text})} value={this.state.comment}/> 
             <Pressable onPress={()=>this.crear(this.state.comment)}>
