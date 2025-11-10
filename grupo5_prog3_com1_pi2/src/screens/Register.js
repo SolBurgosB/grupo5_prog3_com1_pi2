@@ -43,14 +43,17 @@ export default class Register extends Component {
             if (password.length <= 5) {
                 this.setState({ errorpass: "La contraseña debe tener una longitud mínima de 6 caracteres" })
             }
+            if (username.length < 3) {
+                this.setState({ errorusername: "Este campo requiere con mínimo 2 caracteres" })
+            }
             if (password.length == 0) {
                 this.setState({ errorpass: "Este campo es obligatorio" })
             }
             if (email.length == 0) {
                 this.setState({ errormail: "Este campo es obligatorio" })
             }
-            if (username.length < 2) {
-                this.setState({ errorusername: "Este campo es obligatorio con minimo 2 caracteres" })
+            if (username.length == 0) {
+                this.setState({ errorusername: "Este campo es obligatorio" })
             }
         }
     }

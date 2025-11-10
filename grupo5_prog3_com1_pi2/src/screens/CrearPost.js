@@ -24,7 +24,7 @@ export default class CrearPost extends Component {
         likes:[]
     })
     .then((res)=>{
-      
+      this.setState({post: ""})
       this.props.navigation.navigate("CommentsNavigation", { screen: "HomePage"})})
     .catch((error)=> console.log(error))
     }

@@ -36,7 +36,7 @@ export default class Comments extends Component {
         post: this.props.route.params.id
         
     })
-    .then((res)=>this.props.navigation.navigate("HomePage"))
+    .then(this.setState({comment: ""}))
     .catch((error)=> console.log(error))
     }
     
