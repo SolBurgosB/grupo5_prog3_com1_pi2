@@ -17,7 +17,7 @@ export default class Register extends Component {
         }
     }
     submit(username, email, password) {
-        if (username.length > 3 && email.includes("@") && password.length > 5) {
+        if (username.length > 2 && email.includes("@") && password.length > 5) {
             auth.createUserWithEmailAndPassword(email, password)
                 .then(() => {
                     db.collection("users").add({
@@ -49,8 +49,8 @@ export default class Register extends Component {
             if (email.length == 0) {
                 this.setState({ errormail: "Este campo es obligatorio" })
             }
-            if (username.length == 0) {
-                this.setState({ errorusername: "Este campo es obligatorio" })
+            if (username.length < 2) {
+                this.setState({ errorusername: "Este campo es obligatorio con minimo 2 caracteres" })
             }
         }
     }
