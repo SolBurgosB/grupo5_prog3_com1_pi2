@@ -48,10 +48,8 @@ export default class Register extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.app}>¡Bienvenidos!</Text>
-                <Text style={styles.titulo}>Register</Text>
-                <Pressable style={styles.loginboton} onPress={() => this.props.navigation.navigate('Login')}>
-                    <Text style={styles.login}>Ya tengo cuenta </Text>
-                </Pressable>
+                <Text style={styles.titulo}>Creá tu cuenta</Text>
+                
                 <View>
                     <TextInput style={styles.campo} keyboardType='default' placeholder='Username' onChangeText={(text) => this.setState({ username: text })} value={this.state.username} />
                     <TextInput style={styles.campo} keyboardType='email-address' placeholder='Email' onChangeText={(text) => this.setState({ email: text })} value={this.state.email} />
@@ -63,6 +61,9 @@ export default class Register extends Component {
                         <Text style={styles.registrarsetexto}>Registrarme</Text>
                     </Pressable>
                 </View>
+                <Pressable style={styles.loginboton} onPress={() => this.props.navigation.navigate('Login')}>
+                    <Text style={styles.login}>Ya tengo cuenta </Text>
+                </Pressable>
             </View>
         )
     }
@@ -115,11 +116,15 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
       fontSize: 16,
     },
-    loginboton: { alignItems: "center", marginTop: 10 },
+    loginboton: { backgroundColor: "#FF8AC2",
+        borderRadius: 10,
+        paddingVertical: 12,
+        alignItems: "center",
+        marginTop: 6,},
     login: {
-      color: "#C2185B",
-      textDecorationLine: "underline",
-      fontSize: 14,
+        color: "white",
+        fontWeight: "bold",
+        fontSize: 16,
     },
     error: {
       color: "#D32F2F",
