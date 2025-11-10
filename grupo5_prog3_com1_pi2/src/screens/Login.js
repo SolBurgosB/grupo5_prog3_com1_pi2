@@ -10,7 +10,7 @@ export default class Login extends Component {
             password: "",
             erroremail: "",
             errorpass: "",
-            errorfirebase:"",
+            errorfirebase: "",
             emailLogin: "",
         }
     }
@@ -28,16 +28,19 @@ export default class Login extends Component {
         auth.signInWithEmailAndPassword(email, password)
             .then((user) => { this.props.navigation.navigate("TabNavigation", { screen: "HomePage" }) })
             .catch((error) => {
-                    console.log(error)
-                    if (error.code == "auth/internal-error") {
-                        this.setState({errorfirebase: "No existe una cuenta con este mail o la contraseña es incorrecta"})
-                    }
-                })
+                console.log(error)
+                if (error.code == "auth/internal-error") {
+                    this.setState({ errorfirebase: "No existe una cuenta con este mail o la contraseña es incorrecta" })
+                }
+            })
         if (!email.includes("@")) {
             this.setState({ erroremail: "Email mal formateado" })
         }
-        if (password.length <= 5) {
-            this.setState({ errorpass: "La password debe tener una longitud mínima de 6 caracteres" })
+        if (email.length == 0) {
+            this.setState({ erroremail: "Este campo es obligatorio" })
+        }
+        if (password.length == 0) {
+            this.setState({ errorpass: "Este campo es obligatorio" })
         }
     }
 
@@ -47,8 +50,8 @@ export default class Login extends Component {
                 <Text style={styles.titulo}>Ingresá a tu cuenta</Text>
                 <Pressable>
                     <TextInput style={styles.campo} placeholder='Email' onChangeText={text => this.setState({ email: text })} value={this.state.email} />
-                    <Text>{this.state.erroremail}</Text>
-                    <TextInput style={styles.campo} placeholder='Password' onChangeText={text => this.setState({ password: text })} value={this.state.password} secureTextEntry={true} />
+                    <Text style={styles.error}>{this.state.erroremail}</Text>
+                    <TextInput style={styles.campo} placeholder='Contraseña' onChangeText={text => this.setState({ password: text })} value={this.state.password} secureTextEntry={true} />
                     <Text style={styles.error}>{this.state.errorpass}</Text>
                     <Text style={styles.error}>{this.state.errorfirebase}</Text>
                     <Pressable style={styles.boton} onPress={() => this.onSubmit(this.state.email, this.state.password)}>
@@ -111,8 +114,8 @@ const styles = StyleSheet.create({
         textDecorationLine: "underline",
     },
     error: {
-      color: "#D32F2F",
-      fontSize: 12,
-      marginBottom: 6,
+        color: "#D32F2F",
+        fontSize: 12,
+        marginBottom: 6,
     },
 });
