@@ -116,15 +116,10 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
       fontSize: 16,
     },
-    loginboton: { backgroundColor: "#FF8AC2",
-        borderRadius: 10,
-        paddingVertical: 12,
-        alignItems: "center",
-        marginTop: 6,},
+    loginboton: { alignItems: "center", marginTop: 10 },
     login: {
-        color: "white",
-        fontWeight: "bold",
-        fontSize: 16,
+      color: "#C2185B",
+      fontSize: 14,
     },
     error: {
       color: "#D32F2F",
