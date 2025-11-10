@@ -16,7 +16,7 @@ export default class Profile extends Component {
   componentDidMount() {
     db.collection("posts")
       .where("owner", "==", auth.currentUser.email)
-      .orderBy("createdAt", "desc")
+      // .orderBy("createdAt", "desc")
       .onSnapshot((docs) => {
         let posts = []
         docs.forEach((doc) => { posts.push({ id: doc.id, data: doc.data() }) })
@@ -26,7 +26,7 @@ export default class Profile extends Component {
         })
       }
       )
-       db.collection("users")
+    db.collection("users")
       .where("email", "==", auth.currentUser.email)
       .onSnapshot((docs) => {
         let usuarios = []
@@ -37,28 +37,37 @@ export default class Profile extends Component {
         console.log(usuarios)
       }
       )
-      console.log(auth.currentUser.email);
-      
+    console.log(auth.currentUser.email);
+
   }
   logout() {
-  auth
-    .signOut()
-    .then(() => {
-      this.props.navigation.navigate("Login")
-    })
-    .catch((error) => {
-      console.log(error)
-    });
-}
+    auth
+      .signOut()
+      .then(() => {
+        this.props.navigation.navigate("Login")
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }
 
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.titulo}>Mi perfil</Text>
-        {this.state.users.length > 0 ? <Text style={styles.usuario}>{this.state.users[0].data.username}</Text> : <Text> </Text> }
+        {this.state.users.length > 0 ? <Text style={styles.usuario}>{this.state.users[0].data.username}</Text> : <Text> </Text>}
         <Text style={styles.mail}>{auth.currentUser.email}</Text>
-        {this.state.loading ? <ActivityIndicator size="large" color="pink"/> :<FlatList style={styles.posts} data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post style={styles.post} data={item.data} id={item.id} navigation={this.props.navigation}/>} />}
+
+        {this.state.loading ?
+          (<ActivityIndicator size="large" color="pink" />)
+          :
+          (this.state.postsrecuperados.length > 0 ?
+            (<FlatList style={styles.posts} data={this.state.postsrecuperados} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => (<Post style={styles.post} data={item.data} id={item.id} navigation={this.props.navigation} />)} />)
+            :
+            (<Text>No hay ningún post</Text>)
+          )
+        }
         <Pressable style={styles.boton} onPress={() => this.logout()}>
           <Text style={styles.textoboton}>Cerrar Sesión</Text>
         </Pressable>

@@ -23,7 +23,9 @@ export default class CrearPost extends Component {
         post: parampost,
         likes:[]
     })
-    .then((res)=>this.props.navigation.navigate("CommentsNavigation", { screen: "HomePage"}))
+    .then((res)=>{
+      
+      this.props.navigation.navigate("CommentsNavigation", { screen: "HomePage"})})
     .catch((error)=> console.log(error))
     }
     
